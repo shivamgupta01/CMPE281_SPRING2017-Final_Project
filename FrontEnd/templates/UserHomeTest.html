@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Hello, {{name}}</title>
+      <h2 style="float:center">Hello, {{ name }}</h2>
       <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -21,6 +22,61 @@
   </head>
   <body>
 
+  <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="carousel slide" id="carousel-361002">
+				<ol class="carousel-indicators">
+					<li data-slide-to="0" data-target="#carousel-361002">
+					</li>
+					<li data-slide-to="1" data-target="#carousel-361002">
+					</li>
+					<li data-slide-to="2" data-target="#carousel-361002" class="active">
+					</li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item">
+						<img alt="Carousel Bootstrap First" src="https://www.opensource-socialnetwork.org/themes/default/images/s1.png" />
+						<div class="carousel-caption">
+							<h4>
+								Open Source Social Networking
+							</h4>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+						</div>
+					</div>
+					<div class="item">
+						<img alt="Carousel Bootstrap Second" src="https://www.opensource-socialnetwork.org/themes/default/images/s4.png" />
+						<div class="carousel-caption">
+							<h4>
+								Open Source Social Networking
+							</h4>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+						</div>
+					</div>
+					<div class="item active">
+						<img alt="Carousel Bootstrap Third" src="https://www.opensource-socialnetwork.org/themes/default/images/s3.png" />
+						<div class="carousel-caption">
+							<h4>
+								Open Source Social Networking
+							</h4>
+							<p>
+								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+							</p>
+						</div>
+					</div>
+				</div> <a class="left carousel-control" href="#carousel-361002" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-361002" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+  <br><br><br>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -29,7 +85,7 @@
 					<div class="panel-group" id="panel-474773">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-474773" href="#panel-element-30463">Create a community</a>
+                                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-474773" href="#panel-element-30463"><b>Create a community</b></a>
 							</div>
 							<div id="panel-element-30463" class="panel-collapse collapse">
 								<div class="panel-body">
@@ -42,7 +98,7 @@
 <div class="enter-name">
     <div class="grid-100">
         <form action="{{ url_for('save') }}" method="POST">
-            <h2>SELECT ROOT </h2>
+            <h3>SELECT ROOT </h3>
             <label>Select where you want to create your community:</label>
             <form action="{{ url_for('save') }}" method="POST">
             <select name="baseLocation">
@@ -51,8 +107,8 @@
             {% endfor %}
             </select>
             <br>
-            Community Name : <input type="text" name="communityName">
-            <input type="submit" value="Save!">
+            Community Name : <input type="text" name="communityName"><br>
+            <input type="submit" value="Save">
             </form>
         </form>
     </div>
@@ -68,11 +124,11 @@
 					<div class="panel-group" id="panel-495072">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-495072" href="#panel-element-864404">Search a community</a>
+                                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-495072" href="#panel-element-864404"><b>Search a community</b></a>
 							</div>
 							<div id="panel-element-864404" class="panel-collapse collapse">
 								<div class="panel-body">
-									Search available communities
+									<h3>SEARCH AVAILABLE COMMUNITIES</h3><br>
 									<form action="{{ url_for('searchRes') }}" method="POST">
                                      <select name="searchForm">
                                          {% for value in savedList %}
@@ -80,7 +136,7 @@
 										 {% endfor %}
 									 </select>
 									<br><br>
-                                    <input type="submit" value="JOIN THE COMMUNITY!">
+                                    <input type="submit" value="Join The Community">
                                    </form>
 
 
