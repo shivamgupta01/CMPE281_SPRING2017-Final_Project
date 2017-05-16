@@ -247,7 +247,7 @@ def validateLogin():
         print str(_password)
         if Val:
             if str(Val) == str(_password):
-                session['user'] = user1
+                #session['user'] = user1
                 return render_template('UserHomeTest.html',name=user1,savedList = list)
             else:
                 return render_template('error.html', error='Wrong Email address or Password.')
@@ -264,6 +264,4 @@ def validateLogin():
         con.close()
 
 if __name__ == "__main__":
-    app.secret_key = 'super secret key'
-    app.config['SESSION_TYPE'] = 'filesystem'
     app.run(port=5004,debug=True)
