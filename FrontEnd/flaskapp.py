@@ -5,17 +5,16 @@ from flask import (render_template, redirect,
                    url_for, request,make_response)
 import json
 import os
- #fff
-
 
 mysql = MySQL()
 app = Flask(__name__)
 
 # MySQL configurations
-app.config['MYSQL_DATABASE_USER'] = 'root'
+
+app.config['MYSQL_DATABASE_USER'] = 'cmpe281'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'root1234'
 app.config['MYSQL_DATABASE_DB'] = 'test'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_HOST'] = 'mydbinstance.cnqobngvit0z.us-west-2.rds.amazonaws.com'
 mysql.init_app(app)
 
 
@@ -142,15 +141,20 @@ def validateDriverInput():
     except Exception as e:
         return json.dumps({'error': str(e)})
 
+def getURLFromShivam(finalCommunity):
+    return "http:google.com"
+
 @app.route('/save', methods=['POST'])
 def save():
     finalCommunity = "cNone"
     print dict(request.form.items())
-    baseLocation =  dict(request.form.items()).get('baseLocation')
-    communityName =  dict(request.form.items()).get('communityName')
+    baseLocation = ""
+    baseLocation = dict(request.form.items()).get('baseLocation')
+    communityName = dict(request.form.items()).get('communityName')
     finalCommunity = baseLocation + "/" + communityName
     print finalCommunity
-    saveWordsToFile(finalCommunity,"http:google.com")
+    url = getURLFromShivam(finalCommunity)
+    insertIntoDB(finalCommunity,url)
     response = make_response(redirect(url_for('builder')))
     return response
 
@@ -184,6 +188,34 @@ def saveWordsToFile(path, url):
         f.truncate()
 
 
+def insertIntoDB(finalCommunity,url):
+    con = mysql.connect()
+    cursor = con.cursor()
+    id = 1
+
+    query1 = ("INSERT INTO CopmmunityData2 "
+          "(id, data, url) "
+          "VALUES (%s, %s, %s)")
+    data_query1 = (id, finalCommunity, url)
+    cursor.execute(query1, data_query1)
+    cursor.execute("commit")
+
+
+def checkAllFromDB():
+    print "hell"
+    list = []
+    con = mysql.connect()
+    cursor = con.cursor()
+    query = ("SELECT * FROM CopmmunityData2 ")
+    cursor.execute(query)
+    for row in cursor.fetchall():
+        checkFlag = 1
+        print row[0]
+        print row[1]
+        print row[2]
+        list.append(row[1])
+    return list
+
 @app.route('/builder')
 def builder():
     return render_template("layout.html")
@@ -199,25 +231,24 @@ def validateLogin():
 
         con = mysql.connect()
         cursor = con.cursor()
-        cursor.callproc('sp_validateLogin', (_username,))
-        data = cursor.fetchall()
 
         list = []
-        list.append("OSSN")
+        list = checkAllFromDB()
+        query = ("SELECT * FROM tbl_user "
+                 "WHERE user_username = %s")
 
-        with open("communityData.txt", "r+") as f:
-            fileContent = f.read()
-            jsonDataDict = {'OSSN': 'google.com'}
-            if os.path.getsize("communityData.txt") > 0:
-                jsonDataDict = json.loads(fileContent)
+        cursor.execute(query, _username)
 
-            list = jsonDataDict.keys()
-            print list
+        for row in cursor.fetchall():
+            user1 = row[1]
+            Val = row[3]
 
-        if len(data) > 0:
-            if str(data[0][3])== _password:
-                #session['user'] = data[0][0]
-                return render_template('UserHomeTest.html',name = data[0][1],savedList = list)
+        print str(Val)
+        print str(_password)
+        if Val:
+            if str(Val) == str(_password):
+                session['user'] = user1
+                return render_template('UserHomeTest.html',name=user1,savedList = list)
             else:
                 return render_template('error.html', error='Wrong Email address or Password.')
         else:
@@ -233,5 +264,7 @@ def validateLogin():
         con.close()
 
 if __name__ == "__main__":
-    app.run(port=5001,debug=True)
+    app.secret_key = 'super secret key'
+    app.config['SESSION_TYPE'] = 'filesystem'
+    app.run(port=5003,debug=True)
 
