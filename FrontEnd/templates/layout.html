@@ -1,22 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> {% block title%}Flask Basics{% endblock %}</title>
-    <link rel= "stylesheet" href="/static/src/css/style.css">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Hello, {{name}}</title>
+
+      <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="/static/src/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/src/css/style.css" rel="stylesheet">
+      <link href="/static/layout/src/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/layout/src/css/style.css" rel="stylesheet">
+
+
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet">
+
+  </head>
 <body>
+
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card-2">
+    <a href="/" class="w3-bar-item w3-button"><b>Smart Community social network</b> </a>
+
+    <div class="w3-right w3-hide-small">
+      <a href="/#contact" class="w3-bar-item w3-button">Contact</a>
+        <a href="/" class="w3-bar-item w3-button">Logout</a>
+    </div>
+  </div>
+</div>
+
 <div class="container-fluid">
-	<div class="row">
-		<img alt="Carousel Bootstrap Second" src="https://www.opensource-socialnetwork.org/themes/default/images/s1.png" />
-	</div><br>
+	<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<h3>
-				Click on the Link below to join the community
-			</h3> The URL is : <a href="{{ url }}" class="btn" type="button">{{ url }}</a>
+			<div class="jumbotron">
+				<img alt="Carousel Bootstrap Second" src="https://www.opensource-socialnetwork.org/themes/default/images/s1.png" />
+				<br><br>
+				<p>
+					<b>Below you can either start your own community or choose to join an existing community</b>
+				</p>
+				<br>
+				The URL is : <a href="{{ url }}" class="btn" type="button">{{ url }}</a>
+			</div>
 		</div>
 	</div>
 </div>
+</div>
+
+ <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/scripts.js"></script>
 </body>
 </html>
