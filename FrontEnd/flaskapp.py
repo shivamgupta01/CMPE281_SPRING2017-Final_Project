@@ -207,13 +207,21 @@ def save():
 
 @app.route('/searchRes', methods=['POST'])
 def searchRes():
-    with open("communityData.txt", "r+") as f:
-        fileContent = f.read()
-        jsonDataDict = {'OSSN': 'google.com'}
-        if os.path.getsize("communityData.txt") > 0:
-            jsonDataDict = json.loads(fileContent)
+    print "entering here"
     selectedOssn = dict(request.form.items()).get('searchForm')
-    url = jsonDataDict.get(selectedOssn)
+    list = []
+    con = mysql.connect()
+    cursor = con.cursor()
+    query = ("SELECT * FROM CopmmunityData2 ")
+    cursor.execute(query)
+    for row in cursor.fetchall():
+        checkFlag = 1
+        print row[0]
+        print row[1]
+        print row[2]
+        list.append(row[1])
+        if row[1] == selectedOssn:
+            url = row[2]
     print url
     response = make_response(redirect(url_for('builder2')))
     return response
