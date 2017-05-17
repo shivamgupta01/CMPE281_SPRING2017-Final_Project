@@ -201,8 +201,7 @@ def save():
     print finalCommunity
     url = getURLFromShivam(finalCommunity)
     insertIntoDB(finalCommunity,url)
-    response = make_response(redirect(url_for('builder')))
-    return response
+    return render_template('layout.html', url=url)
 
 
 @app.route('/searchRes', methods=['POST'])
@@ -223,8 +222,8 @@ def searchRes():
         if row[1] == selectedOssn:
             url = row[2]
     print url
-    response = make_response(redirect(url_for('builder2')))
-    return response
+    return render_template('layout.html', url=url)
+
 
 
 def saveWordsToFile(path, url):
