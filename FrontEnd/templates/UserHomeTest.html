@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Hello, {{name}}</title>
-      <h2 style="float:center">Hello, {{ name }}</h2>
+
       <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -21,13 +21,34 @@
 
   </head>
   <body>
+  <div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card-2">
+    <a href="/" class="w3-bar-item w3-button"><b>Smart Community social network</b> </a>
+
+    <div class="w3-right w3-hide-small">
+      <a href="/#contact" class="w3-bar-item w3-button">Contact</a>
+        <a href="/" class="w3-bar-item w3-button">Logout</a>
+    </div>
+  </div>
+</div>
 
   <div class="container-fluid">
+	<div class="container-fluid">
 	<div class="row">
-		<img alt="Carousel Bootstrap Second" src="https://www.opensource-socialnetwork.org/themes/default/images/s4.png" />
+		<div class="col-md-12">
+			<div class="jumbotron">
+				<h2>
+					Hello, {{name}} !!
+				</h2>
+				<p>
+					Below you can either start your own community or choose to join an existing community
+				</p>
+			</div>
+		</div>
 	</div>
 </div>
-  
+</div>
+
   <br><br><br>
 
 <div class="container-fluid">
