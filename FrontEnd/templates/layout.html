@@ -2,10 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> {% block title%}Success{% endblock %}</title>
+    <title> {% block title%}Flask Basics{% endblock %}</title>
     <link rel= "stylesheet" href="/static/src/css/style.css">
 </head>
 <body>
-{{ url }}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3>
+				Click on the Link below to join the community
+			</h3> The URL is : <a href="{{ url }}" class="btn" type="button">{{ url }}</a>
+		</div>
+	</div>
+</div>
 </body>
 </html>
