@@ -215,7 +215,7 @@ def searchRes():
     selectedOssn = dict(request.form.items()).get('searchForm')
     url = jsonDataDict.get(selectedOssn)
     print url
-    response = make_response(redirect(url_for('builder')))
+    response = make_response(redirect(url_for('builder2')))
     return response
 
 
@@ -264,7 +264,11 @@ def checkAllFromDB():
 
 @app.route('/builder')
 def builder():
-    return render_template("layout.html")
+    return render_template('layout.html')
+  
+@app.route('/builder2')
+def builder2():
+    return render_template('layout.html',url="google.com")  
 
 
 @app.route('/validateLogin', methods=['POST'])
